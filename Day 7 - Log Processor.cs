@@ -25,11 +25,11 @@
             else if (attempts > 100) status = "ACCESS DENIED – TOO MANY ATTEMPTS";
             else if (accessLevel >= 5) status = "ACCESS GRANTED – HIGH SECURITY";
             else status = "ACCESS GRANTED – STANDARD";
-            Console.WriteLine($"{"Gate".PadRight(8)} : {gateCode}");
-            Console.WriteLine($"{"User".PadRight(8)} : {userInitial}");
-            Console.WriteLine($"{"Level".PadRight(8)} : {accessLevel}");
-            Console.WriteLine($"{"Attempts".PadRight(8)} : {attempts}");
-            Console.WriteLine($"{"Status".PadRight(8)} : {status}");
+            Console.WriteLine($"{"Gate",-8} : {gateCode}");
+            Console.WriteLine($"{"User",-8} : {userInitial}");
+            Console.WriteLine($"{"Level",-8} : {accessLevel}");
+            Console.WriteLine($"{"Attempts",-8} : {attempts}");
+            Console.WriteLine($"{"Status",-8} : {status}");
         }
     }
 }
