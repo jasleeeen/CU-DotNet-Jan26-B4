@@ -27,11 +27,13 @@ namespace ConsoleApp19Exer
 
         public string PrintBill()
         {
+            decimal billAmount = CalculateBillAmount();
+            decimal tax = CalculateTax(billAmount);
             return $"Consumer Id : {ConsumerId}\n" +
                    $"Consumer Name : {ConsumerName}\n" +
                    $"Units Consumed : {UnitsConsumed}\n" +
                    $"Rate Per Unit : {RatePerUnit}\n" +
-                   $"Payable Amount : {CalculateBillAmount()}";
+                   $"Payable Amount : {billAmount+tax}";
         }
     }
 
@@ -47,7 +49,7 @@ namespace ConsoleApp19Exer
             if (UnitsConsumed > 300) surcharge = 0.1m * billAmount;
             decimal tax = CalculateTax(billAmount);
 
-            return billAmount + surcharge + tax;
+            return billAmount + surcharge;
         }
     }
 
@@ -63,7 +65,7 @@ namespace ConsoleApp19Exer
         public override decimal CalculateBillAmount()
         {
             decimal billAmount = UnitsConsumed * RatePerUnit;
-            return billAmount + CalculateTax(billAmount);
+            return billAmount;
         }
     }
 
@@ -80,7 +82,7 @@ namespace ConsoleApp19Exer
         public override decimal CalculateBillAmount()
         {
             decimal billAmount = 150 + (UnitsConsumed * RatePerUnit);
-            return billAmount + CalculateTax(billAmount);
+            return billAmount;
         }
     }
 
