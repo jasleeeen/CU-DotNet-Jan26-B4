@@ -49,7 +49,7 @@ namespace Assessment4Billing_Engine
         public int SeverityLevel { get; set; }
         override public decimal CalculateFinalBill()
         {
-            if (SeverityLevel < 0 && SeverityLevel > 5) {
+            if (SeverityLevel < 0 || SeverityLevel > 5) {
                 Console.WriteLine("Invalid Severity Level");
                 return BaseFee;
             }
