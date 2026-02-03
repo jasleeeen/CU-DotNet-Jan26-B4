@@ -23,8 +23,27 @@ namespace ConsoleApp3._2Ex
             var fastest = leaderboard.First();
             Console.WriteLine($"\nFastest Lap Time: \nName: {fastest.Value}\nTime: {fastest.Key:F2}\n");
             Console.WriteLine("SteadyEddie's improved time: 54.00\n");
-            leaderboard.Remove(58.91);
-            leaderboard.Add(54.00, "SteadyEddie");
+            Console.Write("Enter player whose time needs to be changed: ");
+            string playerName = Console.ReadLine();
+            Console.Write("Enter new lap time: ");
+            double newTime = double.Parse(Console.ReadLine());
+            bool found = false;
+            double oldTime = 0;
+            foreach (var entry in leaderboard)
+            {
+                if (entry.Value.Equals(playerName))
+                {
+                    oldTime = entry.Key;
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                leaderboard.Remove(oldTime);
+                leaderboard.Add(newTime, playerName);
+            }
             Console.WriteLine("Leaderboard ");
             foreach (var item in leaderboard)
             {
