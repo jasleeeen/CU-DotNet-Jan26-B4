@@ -37,15 +37,42 @@ namespace ConsoleApp11._2
             };
 
             Console.WriteLine("Get top users by total likes");
-
+            var topUsers = users.GroupJoin(posts,u => u.Id, p => p.UserId, (u, p) => new
+               {
+                   u.Name,
+                   TotalLikes = p.Sum(p => p.Likes)
+               }).OrderByDescending(x => x.TotalLikes);
+            foreach (var user in topUsers)
+            {
+                Console.WriteLine($"{user.Name} - {user.TotalLikes}");
+            }
 
             Console.WriteLine("\nGroup users by country");
-
+            var groupByCountry = users.GroupBy(u => u.Country);
+            foreach (var group in groupByCountry)
+            {
+                Console.WriteLine($"{group.Key}");
+                foreach (var user in group)
+                {
+                    Console.WriteLine(user.Name);
+                }
+            }
 
             Console.WriteLine("\nList inactive users(no posts)");
-
+            var inactiveUsers = users.GroupJoin(posts, u => u.Id, p => p.UserId,
+               (u, p) => new
+               {
+                   u.Name,
+                   PostCount = p.Count()
+               }).Where(x => x.PostCount == 0).Select(x => x.Name);
+            foreach (var user in inactiveUsers)
+            {
+                Console.WriteLine($"{user}");
+            }
 
             Console.WriteLine("\nCalculate average likes per post");
+            var averageLikes = posts.Average(p => p.Likes);
+            Console.WriteLine(averageLikes);
 
         }
     }

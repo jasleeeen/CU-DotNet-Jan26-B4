@@ -23,6 +23,7 @@ namespace ConsoleApp11._2
     {
         static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             var customers = new List<Customer>
             {
                 new Customer{Id=1, Name="Ajay", City="Delhi"},
@@ -36,53 +37,63 @@ namespace ConsoleApp11._2
             };
 
             Console.WriteLine("Get total order amount per customer");
-            var totalAmt = customers.Join(orders, o => o.Id, i => i.OrderId,
-                (p, s) => new { p.Name, s.Amount }
-                );
+            var totalAmt = customers.GroupJoin(orders,
+                           c => c.Id,
+                           o => o.CustomerId,
+                           (c, o) => new
+                           {
+                               c.Name,
+                               TotalAmount = o.Sum(x => x.Amount)
+                           });
+
             foreach (var item in totalAmt)
             {
-                Console.WriteLine($"{item.Name} - {item.Amount}");
+                Console.WriteLine($"{item.Name} - {item.TotalAmount}");
             }
 
             Console.WriteLine("\nList customers with no orders");
-            var noOrder = customers.GroupJoin(orders, o => o.Id, i => i.OrderId,
-                (p, s) => new { p.Name, Amount = s.Amount }
-                );
-            //var joinProductSales = products.GroupJoin(sales, o => o.Id, i => i.ProductId,
-            //    (p, s) => new {
-            //        ProductName = p.Name,
-            //        TotalQty = s.Sum(x => x.Qty)
-            //    });
-
-            //var noSales = products.GroupJoin(sales, o => o.Id, i => i.ProductId,
-            //    (p, s) => new
-            //    {
-            //        ProductName = p.Name,
-            //        TotalQty = s.Sum(x => x.Qty)
-            //    }).Where(x => x.TotalQty == 0);
-            foreach (var item in totalAmt)
+            var noOrder = customers.GroupJoin(orders,
+                           c => c.Id,
+                           o => o.CustomerId,
+                           (c, o) => new
+                           {
+                               c.Name,
+                               cnt = o.Count()
+                           }).Where(x => x.cnt == 0);
+            foreach (var item in noOrder)
             {
-                Console.WriteLine($"{item.Name} - {item.Amount}");
+                Console.WriteLine(item.Name);
             }
 
-            Console.WriteLine("\nGet customers who spent above ₹50,000");
-            var totalAmt = customers.Join(orders, o => o.Id, i => i.OrderId,
-                (p, s) => new { p.Name, s.Amount }
-                );
-            foreach (var item in totalAmt)
+            Console.WriteLine($"\n{"Get customers who spent above "} {"50,000":C}");
+            var above50k = customers.GroupJoin(orders,
+                           c => c.Id,
+                           o => o.CustomerId,
+                           (c, custOrders) => new
+                           {
+                               c.Name,
+                               TotalAmount = custOrders.Sum(x => x.Amount)
+                           }).Where(x => x.TotalAmount > 50000);
+            foreach (var item in above50k)
             {
-                Console.WriteLine($"{item.Name} - {item.Amount}");
+                Console.WriteLine($"{item.Name} - {item.TotalAmount}");
             }
 
             Console.WriteLine("\nSort customers by total spending");
-            var totalAmt = customers.Join(orders, o => o.Id, i => i.OrderId,
-                (p, s) => new { p.Name, s.Amount }
-                );
-            foreach (var item in totalAmt)
+            var sorted = customers.GroupJoin(orders,
+                           c => c.Id,
+                           o => o.CustomerId,
+                           (c, custOrders) => new
+                           {
+                               c.Name,
+                               TotalAmount = custOrders.Sum(x => x.Amount)
+                           })
+                .OrderByDescending(x => x.TotalAmount);
+            foreach (var item in sorted)
             {
-                Console.WriteLine($"{item.Name} - {item.Amount}");
+                Console.WriteLine($"{item.Name} - {item.TotalAmount}");
             }
-
         }
+
     }
 }
