@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Application Form</title>
+</head>
+<body>
+    <h1>Loan Form</h1>
+    <hr>
+    <form>
+        <h3>Personal Information</h3>
+        <table border="1" cellspacing="0">
+            <tr>
+                <td>
+                    <label>Enter First Name: </label>
+                </td>
+                <td>
+                    <input type="text" name="fname" id="fname" required placeholder="First Name"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Middle Name: </label>
+                </td>
+                <td>
+                    <input type="text" name="mname" id="mname" placeholder="Middle Name"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Last Name: </label>
+                </td>
+                <td>
+                    <input type="text" name="lname" id="lname" required placeholder="Last Name"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Father's Name: </label>
+                </td>
+                <td>
+                    <input type="text" name="father_name" id="father_name" required placeholder="Father's Name"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Mother's Name: </label>
+                </td>
+                <td>
+                    <input type="text" name="mother_name" id="mother_name" required placeholder="Mother's Name"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <tr>
+                <td>
+                    <label>Enter your gender: </label>
+                </td>
+                <td>
+                    <input type="radio" name="gender" id="male"/><label for="male">Male</label>
+                    <input type="radio" name="gender" id="female"/><label for="female">Female</label>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <label>Enter DOB: </label>
+                </td>
+                <td>
+                    <input type="date" name="dob" id="dob" required min = "1950-01-01" max="2008-01-01"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter PAN: </label>
+                </td>
+                <td>
+                    <input type="text" pattern = "^[A-Z]{5}[0-9]{4}[A-Z]{1}$" name = "pan" id = "pan" placeholder="ABCDE1234F" required/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Phone Number: </label>
+                </td>
+                <td>
+                    <input type="number" name="phone" id="phone" required placeholder="XXXXXXXXXX" pattern="[0-9]{10}"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter E-Mail: </label>
+                </td>
+                <td>
+                    <input type="email" name="email" id="email" required placeholder="sample@email.com"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Address: </label>
+                </td>
+                <td>
+                    <textarea name="address" id="address" required placeholder="Enter your full address"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter PIN Code: </label>
+                </td>
+                <td>
+                    <input type="number" name="pin" id="pin" required pattern="^[1-9]{1}[0-9]{5}$"/>
+                </td>                
+            </tr>
+
+            <tr>
+                <tr>
+                <td>
+                    <label>Enter State: </label>
+                </td>
+                <td>
+                    <select name="state" id="state" required>
+                        <option value="">Select State</option>
+                        <option value="1">Andhra Pradesh</option>
+                        <option value="2">Arunachal Pradesh</option>
+                        <option value="3">Assam</option>
+                        <option value="4">Bihar</option>
+                        <option value="5">Chhattisgarh</option>
+                        <option value="6">Goa</option>
+                        <option value="7">Gujarat</option>
+                        <option value="8">Haryana</option>
+                        <option value="9">Himachal Pradesh</option>
+                        <option value="10">Jharkhand</option>
+                        <option value="11">Karnataka</option>
+                        <option value="12">Kerala</option>
+                        <option value="13">Madhya Pradesh</option>
+                        <option value="14">Maharashtra</option>
+                        <option value="15">Manipur</option>
+                        <option value="16">Meghalaya</option>
+                        <option value="17">Mizoram</option>
+                        <option value="18">Nagaland</option>
+                        <option value="19">Odisha</option>
+                        <option value="20">Punjab</option>
+                        <option value="21">Rajasthan</option>
+                        <option value="22">Sikkim</option>
+                        <option value="23">Tamil Nadu</option>
+                        <option value="24">Telangana</option>
+                        <option value="25">Tripura</option>
+                        <option value="26">Uttar Pradesh</option>
+                        <option value="27">Uttarakhand</option>
+                        <option value="28">West Bengal</option>
+                        <option value="29">Andaman and Nicobar Islands</option>
+                        <option value="30">Chandigarh</option>
+                        <option value="31">Dadra and Nagar Haveli</option>
+                        <option value="32">Daman and Diu</option>
+                        <option value="33">Delhi</option>
+                        <option value="34">Jammu and Kashmir</option>
+                        <option value="35">Ladakh</option>
+                        <option value="36">Lakshadweep</option>
+                        <option value="37">Puducherry</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <br><hr>
+        
+        <h3>Employment Details</h3>
+        <table border="1" cellspacing="0">
+            <tr>
+                <td>
+                    <label>Employment Type: </label>
+                </td>
+                <td>
+                    <select name="employment_type" id="employment_type" required>
+                        <option value="">Select Employment Type</option>
+                        <option value="1">Salaried</option>
+                        <option value="2">Business Owner</option>
+                        <option value="3">Retired</option>
+                    </select>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Annual Income (₹): </label>
+                </td>
+                <td>
+                    <input type="number" name="income" id="income" required/>
+                </td>                
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Company Name: </label>
+                </td>
+                <td>
+                    <input type="text" name="company_name" id="company_name" required/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Company Address: </label>
+                </td>
+                <td>
+                    <input type="text" name="company_address" id="company_address" required/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Supervisor Details for verification: </label>
+                </td>
+                <td>
+                    <input type="text" name="supervisor_name" id="supervisor_name" required placeholder="Name"/>
+                    <input type="number" name="supervisor_contact" id="supervisor_contact" required placeholder="Contact Number" pattern="^[6-9]{1}[0-9]{9}$"/>
+                </td>
+            </tr>
+        </table>
+        <br><hr>
+
+        <h3>Loan Details</h3>
+        <table border="1" cellspacing="0">
+            <tr>
+                <td>
+                    <label>Enter Loan Type: </label>
+                </td>
+                <td>
+                    <select name="loan_type" id="loan_type" required>
+                        <option value="">Select Loan Type</option>
+                        <option value="1">Home Loan</option>
+                        <option value="2">Personal Loan</option>
+                        <option value="3">Education Loan</option>
+                        <option value="4">Gold Loan</option>
+                    </select>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Loan Amount (₹): </label>
+                </td>
+                <td>
+                    <input type="number" name="loan_amount" id="loan_amount" required/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Tenure (Years): </label>
+                </td>
+                <td>
+                    <input type="number" name="loan_tenure" id="loan_tenure" required min="1" max="25"/>
+                </td>
+            </tr>
+        </table>
+        <br><hr>
+
+        <h3>Co-Applicant Details</h3>
+        <table border="1" cellspacing="0">
+            <tr>
+                <td>
+                    <label>Enter Co-applicant Name: </label>
+                </td>
+                <td>
+                    <input type="text" name="co_applicant_name" id="co_applicant_name" required/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Co-applicant Income (₹): </label>
+                </td>
+                <td>
+                    <input type="number" name="co_applicant_income" id="co_applicant_income" required/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Co-applicant PAN: </label>
+                </td>
+                <td>
+                    <input type="text" pattern = "^[A-Z]{5}[0-9]{4}[A-Z]{1}$" name = "co_applicant_pan" id = "co_applicant_pan" placeholder="ABCDE1234F" required/>
+                </td>
+            </tr>
+        </table>
+        <br><hr>
+
+        <h3>Other Details</h3>
+        <table cellspacing="0">
+            <tr>
+                <td>
+                    <label>Enter Other Account Details(if exists): </label>
+                </td>
+                <td>
+                    <input type="number" name="other_account_details" id="other_account_details"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter Collateral Details(if exists): </label>
+                </td>
+                <td>
+                    <textarea name="collateral_details" id="collateral_details" placeholder="Address of the property to be kept as collateral"></textarea>
+                </td>
+            </tr>
+        </table>
+        <hr><br>
+
+        <input type="checkbox" id="acknowledgement" name="acknowledgement" value="acknowledged" required>
+        <label for="acknowledgement"> I acknowledge the terms and conditions of the loan form.</label><br>
+        <br><hr><br>
+
+        <tr>
+            <td>
+                <input type="submit" value="Submit"/>
+            </td>
+            <td>
+                <input type="reset" value="Reset"/>
+            </td>
+        </tr>
+    </form>
+</body>
+</html>
