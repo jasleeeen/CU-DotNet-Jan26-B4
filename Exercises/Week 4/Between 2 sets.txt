@@ -1,0 +1,39 @@
+public static int getTotalX(List<int> a, List<int> b)
+    {
+        int count = 0;
+        int maxA = a.Max();
+        int minB = b.Min();
+
+        for (int i = maxA; i <= minB; i++)
+        {
+            bool factorOfA = true;
+            foreach (int numA in a)
+            {
+                if (i % numA != 0)
+                {
+                    factorOfA = false;
+                    break;
+                }
+            }
+
+            if (factorOfA)
+            {
+                bool factorOfB = true;
+                foreach (int numB in b)
+                {
+                    if (numB % i != 0)
+                    {
+                        factorOfB = false;
+                        break;
+                    }
+                }
+
+                if (factorOfB)
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
