@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // function showName() {
+        //     let name = document.getElementById("ename").value;
+        //     // alert("Name is: " + name);
+        // }
+        // function showSkills() {
+        //     let skills = document.getElementsByName("skills");
+        //     let labels = document.getElementsByName("lblSkills");
+        //     for (let index = 0; index < skills.length; index++) {
+        //         const skill = skills[index];
+        //         if(skill.checked) {
+        //             console.log("Skill is: " + skill.value);
+        //             console.log("Skill is: " + labels[index].innerHTML);
+        //         }
+        //     }
+        // }
+
+        function showFormData() {
+            //name, pan
+            let name = document.getElementById("ename").value;
+            let pan = document.getElementById("pan").value;
+            //gender
+            let gender = document.getElementsByName("gender");
+            for (let i = 0; i < gender.length; i++) {
+                if (gender[i].checked) {
+                    gender = gender[i].id;
+                    break;
+                }
+            }
+            //city
+            let city = document.getElementById("city")
+            let cityName = city.options[city.selectedIndex].value;
+            //skills
+            let skills = document.getElementsByName("skills");
+            let labels = document.getElementsByName("lblSkills");
+            let result = "";
+            for (let index = 0; index < skills.length; index++) {
+                if(skills[index].checked){
+                    result = result + labels[index].innerHTML + ", ";
+                }
+            }
+
+            //email, dob, age
+            let email = document.getElementById("email").value;
+            let dob = document.getElementById("dob").value;
+            let age = document.getElementById("age").value;
+            let output = `Name: ${name} | PAN: ${pan} | Gender: ${gender} | City: ${cityName} | Skills: ${result} | Email: ${email} | DOB: ${dob} | Age: ${age}`;
+            console.log(output);
+            alert(output);
+        }
+    </script>
+</head>
+<body>
+    <h1>Employee Registration Form</h1>
+    <form onsubmit="showFormData(); return false;">     <!-- return false is used to prevent form submission and page reload after submit button is clicked. -->
+        <table>
+            <tr>
+                <td>
+                    <label>Enter your name: </label>
+                </td>
+                <td>
+                    <!-- <input type="text" pattern = "[a-zA-Z\s]+" name = "ename" id = "ename" required/> -->
+                    <input type="text" pattern = "^[A-Z]{1}[a-z]{1,}$" name = "ename" id = "ename" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter your PAN: </label>
+                </td>
+                <td>
+                    <input type="text" pattern = "^[A-Z]{5}[0-9]{4}[A-Z]{1}$" name = "pan" id = "pan" placeholder="ABCDE1234F" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label>Enter your gender: </label>
+                </td>
+                <td>
+                    <input type="radio" name="gender" id="Male"/><label for="Male">Male</label>
+                    <input type="radio" name="gender" id="Female"/><label for="Female">Female</label>
+                </td>
+            </tr>
+
+            <tr>
+                <tr>
+                <td>
+                    <label>Enter your City: </label>
+                </td>
+                <td>
+                    <select name="city" id="city">
+                        <option value="">Select City</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Kolkata">Kolkata</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Chandigarh">Chandigarh</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <tr>
+                <td>
+                    <label>Enter your skills: </label>
+                </td>
+                <td>
+                        <input type="checkbox" name="skills" id="csharp" value="1"/> <label name = "lblSkills" for="csharp">C#</label>
+                        <input type="checkbox" name="skills" id="java" value="2"/> <label name = "lblSkills" for="java">Java</label>
+                        <input type="checkbox" name="skills" id="python" value="3"/> <label name = "lblSkills" for="python">Python</label>
+                </td>
+            </tr>
+
+            <tr>
+                <tr>
+                    <td>
+                        <label>Enter your Email: </label>
+                    </td>
+                    <td>
+                        <input type="email" name="email" id="email" placeholder="abcd@abcd.com" />
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <tr>
+                <td>
+                    <label>Select DOB: </label>
+                </td>
+                <td>
+                    <input type="date" name="dob" id="dob"  min = "2000-01-01" max="2010-12-31"/>
+                </td>
+            </tr>
+            <tr>
+                <tr>
+                <td>
+                    <label>Select Age: </label>
+                </td>
+                <td>
+                    <input type="number" name="age" id="age"  min = "10" max="100"/>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <input type="reset" value="Reset"/>
+                </td>
+                <td>
+                    <input type="submit" value="Submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
