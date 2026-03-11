@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Training";
+}
+
+<div class="container mt-4">
+    <h1>Training Programs</h1>
+    <p>This page uses Accordian and Cards.</p>
+    <div class="accordion" id="trainingAccordion">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#course1">
+                    Programming Courses
+                </button>
+            </h2>
+            <div id="course1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Training in languages like C#, Java, Python, and C++.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#course2">
+                    Web Development
+                </button>
+            </h2>
+            <div id="course2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Learn HTML, CSS, JavaScript, ASP.NET MVC etc.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#course3">
+                    AI-ML
+                </button>
+            </h2>
+            <div id="course3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Learn Machine Learning, Deep Learning, NLP, GenAI, RAGs and LLMs.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Beginner</h5>
+                <p class="card-text">For students just starting out.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Intermediate</h5>
+                <p class="card-text">Hands-on training with real-world projects.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Advanced</h5>
+                <p class="card-text">Industry-focused training for professionals.</p>
+            </div>
+        </div>
+    </div>
+</div>

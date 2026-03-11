@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-4">
+    <h1>Services Provided</h1> <br />
+    <div class="card-group">
+        <div class="card me-3">
+            <div class="card-body">
+                <h5 class="card-title">Consulting Services</h5>
+                <a asp-controller="Services" asp-action="Consulting" class="btn btn-primary">
+                    Learn More
+                </a>
+            </div>
+        </div>
+        <div class="card me-3">
+            <div class="card-body">
+                <h5 class="card-title">Training Programs</h5>
+                <a asp-controller="Services" asp-action="Training" class="btn btn-primary">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

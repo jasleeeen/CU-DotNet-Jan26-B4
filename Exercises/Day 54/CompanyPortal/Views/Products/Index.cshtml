@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-4">
+    <h1>Our Products</h1>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Product Category</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Software Products</td>
+                <td>Enterprise software solutions for modern businesses</td>
+                <td><span class="badge bg-success">Available</span></td>
+                <td>
+                    <a asp-controller="Products"
+                       asp-action="Software"
+                       class="btn btn-primary btn-sm">
+                        View
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>Development Tools</td>
+                <td>Tools that help developers build and manage applications</td>
+                <td><span class="badge bg-success">Available</span></td>
+                <td>
+                    <a asp-controller="Products"
+                       asp-action="Tools"
+                       class="btn btn-primary btn-sm">
+                        View
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

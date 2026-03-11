@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Contact Us</h1>
+
+<div class="container mt-4">
+    <p>For any queries, contact us.</p>
+
+    <form>
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" placeholder="Enter your name">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email Address</label>
+            <input type="email" class="form-control" placeholder="Enter your email">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone Number</label>
+            <input type="text" class="form-control" placeholder="Enter your phone number">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Message</label>
+            <textarea class="form-control" rows="4" placeholder="Write your message"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="liveToastBtn">Submit</button>
+
+        <div class="position-fixed top-0 end-0 p-3">
+            <div class="toast" id="liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-body">
+                    Message sent successfully
+                    <div class="mt-2 pt-2 border-top">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    const toastBtn = document.getElementById("liveToastBtn");
+    const toastElement = document.getElementById("liveToast");
+    toastBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+    });
+</script>

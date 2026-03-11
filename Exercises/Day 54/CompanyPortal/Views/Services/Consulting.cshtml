@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Consulting";
+}
+<div class="container mt-4">
+    <h1>Consulting Services</h1>
+    <p>This page uses Accordian and Cards.</p>
+    <br />
+    <div class="accordion" id="consultingAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service1">
+                    Software Development Consulting
+                </button>
+            </h2>
+            <div id="service1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Bootstrap Accordian demonstration.
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#service2">
+                    Cloud Services Consulting
+                </button>
+            </h2>
+            <div id="service2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    Bootstrap Accordian demonstration.
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+
+    <div class="card-group">
+        <div class="card" >
+            <div class="card-body">
+                <h5 class="card-title">Software Development</h5>
+                <p class="card-text">Software development solutions</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">System Architecture</h5>
+                <p class="card-text">Designing scalable system architectures</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Technology Upgrade</h5>
+                <p class="card-text">Modernizing old systems with latest technologies</p>
+            </div>
+        </div>
+    </div>
+</div>
