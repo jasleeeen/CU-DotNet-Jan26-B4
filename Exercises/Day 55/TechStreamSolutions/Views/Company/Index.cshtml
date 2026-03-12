@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Dashboard</h1>
+
+<div class="container mt-4">
+    <h2>@ViewData["DepartmentName"] - Employee Dashboard</h2>
+    <div class="alert alert-warning mt-3">
+        @ViewBag.Announcement
+    </div>
+    @if ((bool)ViewData["ServerStatus"])
+    {
+        <div class="alert alert-success">
+            Status: Active
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            Status: Under Maintenance
+        </div>
+    }
+    <h3 class="mt-4">Employee List</h3>
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Position</td>
+                    <td>@item.Salary</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
