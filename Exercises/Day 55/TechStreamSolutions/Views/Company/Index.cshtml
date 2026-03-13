@@ -6,21 +6,21 @@
 <h1>Dashboard</h1>
 
 <div class="container mt-4">
-    <h2>@ViewData["DepartmentName"] - Employee Dashboard</h2>
+    <h2>Employee Dashboard - @ViewData["DeptName"]</h2>
     <div class="alert alert-warning mt-3">
         @ViewBag.Announcement
     </div>
     @if ((bool)ViewData["ServerStatus"])
     {
-        <div class="alert alert-success">
+        <p>
             Status: Active
-        </div>
+        </p>
     }
     else
     {
-        <div class="alert alert-danger">
+        <p>
             Status: Under Maintenance
-        </div>
+        </p>
     }
     <h3 class="mt-4">Employee List</h3>
     <table class="table table-bordered table-striped mt-3">
