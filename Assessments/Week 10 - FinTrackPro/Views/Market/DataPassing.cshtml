@@ -1,0 +1,15 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h2>Market Analysis</h2>
+
+<div class="alert alert-secondary">
+    Ticker Analyzed: <strong>@ViewBag.Ticker</strong>
+</div>
+
+<div class="alert alert-info">
+    Days considered: <strong>@ViewBag.Days</strong>
+</div>
+
+<a asp-action="Summary" class="btn btn-secondary">Back</a>

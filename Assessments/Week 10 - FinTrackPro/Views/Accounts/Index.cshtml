@@ -1,0 +1,91 @@
+﻿@model IEnumerable<FinTrackPro.Models.Account>
+
+@{
+    ViewData["Title"] = "Accounts";
+}
+
+<h2>Accounts</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New Account</a>
+</p>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+
+<div class="accordion" id="accountAccordion">
+
+    @foreach (var account in Model)
+    {
+        <div class="accordion-item">
+
+            <h2 class="accordion-header" id="heading-@account.ID">
+                <button class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse-@account.ID">
+
+                    <strong>@account.AccountName</strong>
+                    &nbsp; | Balance: @account.Balance
+                </button>
+            </h2>
+
+            <div id="collapse-@account.ID"
+                 class="accordion-collapse collapse"
+                 data-bs-parent="#accountAccordion">
+
+                <div class="accordion-body">
+
+                    <h5>Transactions</h5>
+
+                    @if (account.Transactions != null && account.Transactions.Any())
+                    {
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Amount</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (var t in account.Transactions)
+                                {
+                                    <tr>
+                                        <td>@t.Description</td>
+                                        <td>@t.Amount</td>
+                                        <td>@t.Category</td>
+                                        <td>@t.Date.ToShortDateString()</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+                        <p class="text-muted">No transactions yet.</p>
+                    }
+
+                    <a asp-controller="Transaction"
+                           asp-action="Create"
+                           asp-route-accountId="@account.ID"
+                           class="btn btn-primary">
+
+                        Add Transaction
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    }
+
+</div>

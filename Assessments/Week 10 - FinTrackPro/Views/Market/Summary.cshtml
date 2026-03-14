@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h2>Market Summary</h2>
+<div class="alert alert-primary">
+    Market Status: <strong>@ViewBag.MarketStatus</strong>
+</div>
+<div class="card" style="width: 20rem;">
+    <div class="card-body">
+        <h5 class="card-title">Top Gainer</h5>
+        <p class="card-text">
+            @ViewData["TopGainer"]
+        </p>
+        <p>
+            Volume: @ViewData["Volume"]
+        </p>
+    </div>
+</div>
