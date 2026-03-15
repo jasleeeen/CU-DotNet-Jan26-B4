@@ -23,16 +23,28 @@
     {
         <div class="accordion-item">
 
-            <h2 class="accordion-header" id="heading-@account.ID">
+            <div class="d-flex justify-content-between align-items-center p-2">
+
                 <button class="accordion-button collapsed"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapse-@account.ID">
 
-                    <strong>@account.AccountName</strong>
-                    &nbsp; | Balance: @account.Balance
+                    <strong>@account.AccountName</strong> | Balance: @account.Balance
+
                 </button>
-            </h2>
+
+                <span>
+
+                    <a asp-controller="Accounts"
+                           asp-action="Details"
+                           asp-route-id="@account.ID"
+                           class="btn btn-info btn-sm">
+                        Details
+                    </a>
+                </span>
+
+            </div>
 
             <div id="collapse-@account.ID"
                  class="accordion-collapse collapse"
@@ -45,6 +57,7 @@
                     @if (account.Transactions != null && account.Transactions.Any())
                     {
                         <table class="table table-bordered">
+
                             <thead>
                                 <tr>
                                     <th>Description</th>
@@ -55,16 +68,20 @@
                             </thead>
 
                             <tbody>
+
                                 @foreach (var t in account.Transactions)
                                 {
                                     <tr>
+
                                         <td>@t.Description</td>
                                         <td>@t.Amount</td>
                                         <td>@t.Category</td>
                                         <td>@t.Date.ToShortDateString()</td>
                                     </tr>
                                 }
+
                             </tbody>
+
                         </table>
                     }
                     else
@@ -72,13 +89,11 @@
                         <p class="text-muted">No transactions yet.</p>
                     }
 
-                    <a asp-controller="Transaction"
+                    <a asp-controller="Account"
                            asp-action="Create"
                            asp-route-accountId="@account.ID"
                            class="btn btn-primary">
-
                         Add Transaction
-
                     </a>
 
                 </div>

@@ -24,7 +24,9 @@ namespace FinTrackPro.Controllers
         // GET: Accounts
         public async Task<IActionResult> Index()
         {
-            var accounts = await _context.Account.ToListAsync();
+            var accounts = await _context.Account
+                .Include(a => a.Transactions)
+                .ToListAsync();
             return View(accounts);
         }
 
