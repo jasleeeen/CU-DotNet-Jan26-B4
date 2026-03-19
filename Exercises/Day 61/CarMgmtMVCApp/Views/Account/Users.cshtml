@@ -1,0 +1,65 @@
+﻿@* @model IEnumerable<Microsoft.AspNetCore.Identity.IdentityUser>
+
+<h2>All Users</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.UserName</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
+
+
+
+@model List<CarMgmtMVCApp.Models.UserRoleViewModel>
+
+<h2 class="mb-4">👥 User Management</h2>
+
+<table class="table table-bordered table-hover shadow">
+    <thead class="table-dark">
+        <tr>
+            <th>Email</th>
+            <th>Current Role</th>
+            <th>Change Role</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>
+                    <span class="badge bg-primary">@user.Role</span>
+                </td>
+
+                <td>
+                    <form asp-action="UpdateRole" method="post" class="d-flex gap-2">
+                        <input type="hidden" name="userId" value="@user.UserId" />
+
+                        <select name="newRole" class="form-select">
+                            <option value="User" selected="@(user.Role == "User")">User</option>
+                            <option value="Customer" selected="@(user.Role == "Customer")">Customer</option>
+                        </select>
+
+                        <button type="submit" class="btn btn-success">
+                            Update
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

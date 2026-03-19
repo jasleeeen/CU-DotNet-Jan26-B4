@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-4">
+
+    <div class="p-5 mb-4 bg-dark text-white rounded-3 shadow">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">🚗 Car Management System</h1>
+            <p class="col-md-8 fs-5">
+                Manage cars efficiently with secure role-based access.
+            </p>
+                Built using ASP.NET Core MVC with Identity Authentication.
+            <br />
+            <br />
+
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg me-2">
+                    Get Started
+                </a>
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline-light btn-lg">
+                    Login
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Cars" asp-action="Index" class="btn btn-success btn-lg">
+                    Go to Cars
+                </a>
+            }
+        </div>
+    </div>
+
+    <div class="row text-center">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 mb-4">
+                <h4>🔐 Secure Access</h4>
+                <p>Authentication & Authorization using ASP.NET Identity.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 mb-4">
+                <h4>⚙️ Role-Based Control</h4>
+                <p>Admin, Customer, and User permissions implemented.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 mb-4">
+                <h4>🚘 Car Management</h4>
+                <p>Perform CRUD operations based on your role.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <h3 class="text-center mb-3">Access Levels</h3>
+
+        <div class="row text-center">
+
+            <div class="col-md-4">
+                <div class="border rounded p-3 shadow-sm">
+                    <h5>👤 User</h5>
+                    <p>Can only view cars</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="border rounded p-3 shadow-sm">
+                    <h5>🧑‍💼 Customer</h5>
+                    <p>Can view and create cars</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="border rounded p-3 shadow-sm">
+                    <h5>👑 Admin</h5>
+                    <p>Full control (CRUD + user management)</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
