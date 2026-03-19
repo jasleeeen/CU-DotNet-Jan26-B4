@@ -48,7 +48,7 @@ namespace QuickLoan.Controllers
         {
             if (ModelState.IsValid)
             {
-                loan.ID = loans.Count + 1;
+                loan.ID = loans.Max(l => l.ID) + 1;
                 loans.Add(loan);
                 return RedirectToAction("Index");
             }
