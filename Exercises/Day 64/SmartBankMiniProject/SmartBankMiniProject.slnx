@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/WebServices/">
+    <Project Path="AccountService/AccountService.csproj" />
+  </Folder>
+</Solution>
