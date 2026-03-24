@@ -1,0 +1,165 @@
+﻿@model GlobalMartCentralizedPricingEngine.Models.CartViewModel
+@using GlobalMartCentralizedPricingEngine.Models
+
+@{
+    ViewData["Title"] = "Cart";
+    var products = ViewBag.Products as List<Product>;
+}
+
+<h2>Your Cart</h2>
+
+<form method="post" asp-action="Index">
+
+    <h4>Add Items</h4>
+    <table id="cartTable">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="cartBody">
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <select name="Items[@i].ProductName"
+                                onchange="setPrice(this, @i)">
+                            <option value="">-- Select --</option>
+                            @foreach (var p in products)
+                            {
+                                <option value="@p.Name"
+                                        data-price="@p.BasePrice"
+                                        selected="@(Model.Items[i].ProductName == p.Name)">
+                                    @p.Name (₹@p.BasePrice.ToString("F2"))
+                                </option>
+                            }
+                        </select>
+                        <input type="hidden"
+                               name="Items[@i].BasePrice"
+                               id="price_@i"
+                               value="@Model.Items[i].BasePrice" />
+                    </td>
+                    <td>
+                        <input type="number"
+                               name="Items[@i].Quantity"
+                               value="@(Model.Items[i].Quantity == 0 ? "" : Model.Items[i].Quantity.ToString())"
+                               min="1"
+                               placeholder="Qty" />
+                    </td>
+                    <td>
+                        <button type="button" onclick="removeRow(this)">✕</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="button" onclick="addRow()">＋ Add Item</button>
+
+    <h4>Promo Code</h4>
+    <input type="text"
+           name="PromoCode"
+           value="@Model.PromoCode"
+           placeholder="e.g. WINTER25 or FREESHIP" />
+
+    <br /><br />
+    <button type="submit">Calculate Total</button>
+
+</form>
+
+@if (Model.CalculatedItems.Any())
+{
+    <hr />
+
+    @if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <p><strong>@Model.Message</strong></p>
+    }
+
+    <h4>Order Summary</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Base Price</th>
+                <th>Final Unit Price</th>
+                <th>Qty</th>
+                <th>Line Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CalculatedItems)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>₹@item.BasePrice.ToString("F2")</td>
+                    <td>₹@item.FinalUnitPrice.ToString("F2")</td>
+                    <td>@item.Quantity</td>
+                    <td>₹@item.LineTotal.ToString("F2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <p><strong>Total: ₹@Model.Total.ToString("F2")</strong></p>
+}
+
+<a asp-controller="Products" asp-action="Index">← Back to Products</a>
+
+<script>
+    var productOptions = [
+        @foreach (var p in products)
+        {
+                <text>{ name: "@p.Name", price: @p.BasePrice },</text>
+        }
+    ];
+
+    function addRow() {
+        var tbody = document.getElementById('cartBody');
+        var index = tbody.rows.length;
+
+        var options = '<option value="">-- Select --</option>';
+        productOptions.forEach(function (p) {
+            options += '<option value="' + p.name + '" data-price="' + p.price + '">'
+                     + p.name + ' (\u20B9' + p.price.toFixed(2) + ')</option>';
+        });
+
+        var row = '<tr>'
+            + '<td>'
+            +   '<select name="Items[' + index + '].ProductName" onchange="setPrice(this,' + index + ')">'
+            +     options
+            +   '</select>'
+            +   '<input type="hidden" name="Items[' + index + '].BasePrice" id="price_' + index + '" value="0" />'
+            + '</td>'
+            + '<td>'
+            +   '<input type="number" name="Items[' + index + '].Quantity" min="1" placeholder="Qty" />'
+            + '</td>'
+            + '<td><button type="button" onclick="removeRow(this)">&#x2715;</button></td>'
+            + '</tr>';
+
+        tbody.insertAdjacentHTML('beforeend', row);
+    }
+
+    function removeRow(btn) {
+        btn.closest('tr').remove();
+        reindexRows();
+    }
+
+    function reindexRows() {
+        var rows = document.getElementById('cartBody').rows;
+        for (var i = 0; i < rows.length; i++) {
+            rows[i].querySelector('select').name                    = 'Items[' + i + '].ProductName';
+            rows[i].querySelector('select').setAttribute('onchange','setPrice(this,' + i + ')');
+            rows[i].querySelector('input[type=hidden]').name        = 'Items[' + i + '].BasePrice';
+            rows[i].querySelector('input[type=hidden]').id          = 'price_' + i;
+            rows[i].querySelector('input[type=number]').name        = 'Items[' + i + '].Quantity';
+        }
+    }
+
+    function setPrice(select, index) {
+        var price = select.options[select.selectedIndex].getAttribute('data-price') || '0';
+        document.getElementById('price_' + index).value = price;
+    }
+</script>

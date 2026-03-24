@@ -1,0 +1,41 @@
+﻿@model List<GlobalMartCentralizedPricingEngine.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>Products</h2>
+
+<form method="post" asp-action="Index">
+    <input type="text"
+           name="promoCode"
+           value="@ViewBag.PromoCode"
+           placeholder="e.g. WINTER25" />
+           <br />
+    <button type="submit">Apply</button>
+</form>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message as string))
+{
+    <p><strong>@ViewBag.Message</strong></p>
+}
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Base Price</th>
+            <th>Final Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>$@product.BasePrice.ToString("F2")</td>
+                <td>$@product.DiscountedPrice.ToString("F2")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Cart" asp-action="Index">Go to Cart →</a>
