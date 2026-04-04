@@ -1,0 +1,6 @@
+@VagabondAPI_HostAddress = http://localhost:5264
+
+GET {{VagabondAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
