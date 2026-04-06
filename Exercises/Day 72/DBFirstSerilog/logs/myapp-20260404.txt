@@ -1,0 +1,132 @@
+2026-04-04 09:29:38.630 +05:30 [INF] Now listening on: https://localhost:7197
+2026-04-04 09:29:38.871 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-04 09:29:38.892 +05:30 [INF] Hosting environment: Development
+2026-04-04 09:29:38.895 +05:30 [INF] Content root path: D:\Capg\Solutions\week2\ConsoleApp13.1\DBFirstSerilog
+2026-04-04 09:29:40.997 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/index.html - null null
+2026-04-04 09:29:42.082 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/index.html - 200 null text/html;charset=utf-8 1123.7313ms
+2026-04-04 09:29:42.091 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_vs/browserLink - null null
+2026-04-04 09:29:42.091 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-04 09:29:42.155 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - 200 14933 application/javascript; charset=utf-8 65.4439ms
+2026-04-04 09:29:42.295 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_vs/browserLink - 200 null text/javascript; charset=UTF-8 205.9275ms
+2026-04-04 09:29:42.439 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - null null
+2026-04-04 09:29:42.496 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 58.4947ms
+2026-04-04 09:30:14.865 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/api/Authors - null null
+2026-04-04 09:30:14.898 +05:30 [INF] Executing endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:30:14.972 +05:30 [INF] Route matched with {action = "GetAuthors", controller = "Authors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[DBFirstSerilog.Models.Author]]] GetAuthors() on controller DBFirstSerilog.Controllers.AuthorsController (DBFirstSerilog).
+2026-04-04 09:30:16.439 +05:30 [INF] Fetching authors from the database.
+2026-04-04 09:30:21.789 +05:30 [INF] Executed DbCommand (188ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ID], [a].[Name], [b].[ID], [b].[AuthorID], [b].[Name]
+FROM [Authors] AS [a]
+LEFT JOIN [Books] AS [b] ON [a].[ID] = [b].[AuthorID]
+ORDER BY [a].[ID]
+2026-04-04 09:30:22.088 +05:30 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DBFirstSerilog.Models.Author, DBFirstSerilog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-04 09:30:22.138 +05:30 [INF] Executed action DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog) in 7143.5801ms
+2026-04-04 09:30:22.145 +05:30 [INF] Executed endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:30:22.161 +05:30 [INF] HTTP GET /api/Authors responded 200 in 7257.9905 ms
+2026-04-04 09:30:22.196 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/api/Authors - 200 null application/json; charset=utf-8 7331.8749ms
+2026-04-04 09:30:55.900 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/api/Authors/10 - null null
+2026-04-04 09:30:55.933 +05:30 [INF] Executing endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthor (DBFirstSerilog)'
+2026-04-04 09:30:55.979 +05:30 [INF] Route matched with {action = "GetAuthor", controller = "Authors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[DBFirstSerilog.Models.Author]] GetAuthor(Int32) on controller DBFirstSerilog.Controllers.AuthorsController (DBFirstSerilog).
+2026-04-04 09:30:56.227 +05:30 [INF] Executed DbCommand (100ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[ID], [t].[Name], [b].[ID], [b].[AuthorID], [b].[Name]
+FROM (
+    SELECT TOP(1) [a].[ID], [a].[Name]
+    FROM [Authors] AS [a]
+    WHERE [a].[ID] = @__id_0
+) AS [t]
+LEFT JOIN [Books] AS [b] ON [t].[ID] = [b].[AuthorID]
+ORDER BY [t].[ID]
+2026-04-04 09:30:56.240 +05:30 [INF] Fetching author from the database.
+2026-04-04 09:30:56.246 +05:30 [INF] Executing ObjectResult, writing value of type 'DBFirstSerilog.Models.Author'.
+2026-04-04 09:30:56.254 +05:30 [INF] Executed action DBFirstSerilog.Controllers.AuthorsController.GetAuthor (DBFirstSerilog) in 266.1359ms
+2026-04-04 09:30:56.258 +05:30 [INF] Executed endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthor (DBFirstSerilog)'
+2026-04-04 09:30:56.259 +05:30 [INF] HTTP GET /api/Authors/10 responded 200 in 326.4771 ms
+2026-04-04 09:30:56.262 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/api/Authors/10 - 200 null application/json; charset=utf-8 362.4009ms
+2026-04-04 09:33:06.792 +05:30 [INF] Request starting HTTP/2 PUT https://localhost:7197/api/Authors/4 - application/json 117
+2026-04-04 09:33:06.807 +05:30 [INF] Executing endpoint 'DBFirstSerilog.Controllers.AuthorsController.PutAuthor (DBFirstSerilog)'
+2026-04-04 09:33:06.818 +05:30 [INF] Route matched with {action = "PutAuthor", controller = "Authors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PutAuthor(Int32, DBFirstSerilog.Models.Author) on controller DBFirstSerilog.Controllers.AuthorsController (DBFirstSerilog).
+2026-04-04 09:33:07.224 +05:30 [INF] Executed DbCommand (48ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (Size = 50) (DbType = AnsiString)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Authors] SET [Name] = @p0
+OUTPUT 1
+WHERE [ID] = @p1;
+2026-04-04 09:33:07.250 +05:30 [INF] Updating author in the database.
+2026-04-04 09:33:07.260 +05:30 [INF] Executing StatusCodeResult, setting HTTP status code 204
+2026-04-04 09:33:07.266 +05:30 [INF] Executed action DBFirstSerilog.Controllers.AuthorsController.PutAuthor (DBFirstSerilog) in 444.4193ms
+2026-04-04 09:33:07.273 +05:30 [INF] Executed endpoint 'DBFirstSerilog.Controllers.AuthorsController.PutAuthor (DBFirstSerilog)'
+2026-04-04 09:33:07.279 +05:30 [INF] HTTP PUT /api/Authors/4 responded 204 in 471.7596 ms
+2026-04-04 09:33:07.289 +05:30 [INF] Request finished HTTP/2 PUT https://localhost:7197/api/Authors/4 - 204 null null 497.7485ms
+2026-04-04 09:33:19.884 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/api/Authors - null null
+2026-04-04 09:33:19.902 +05:30 [INF] Executing endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:33:19.904 +05:30 [INF] Route matched with {action = "GetAuthors", controller = "Authors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[DBFirstSerilog.Models.Author]]] GetAuthors() on controller DBFirstSerilog.Controllers.AuthorsController (DBFirstSerilog).
+2026-04-04 09:33:19.907 +05:30 [INF] Fetching authors from the database.
+2026-04-04 09:33:19.942 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ID], [a].[Name], [b].[ID], [b].[AuthorID], [b].[Name]
+FROM [Authors] AS [a]
+LEFT JOIN [Books] AS [b] ON [a].[ID] = [b].[AuthorID]
+ORDER BY [a].[ID]
+2026-04-04 09:33:19.952 +05:30 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DBFirstSerilog.Models.Author, DBFirstSerilog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-04 09:33:19.961 +05:30 [INF] Executed action DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog) in 54.6713ms
+2026-04-04 09:33:19.972 +05:30 [INF] Executed endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:33:19.981 +05:30 [INF] HTTP GET /api/Authors responded 200 in 79.1544 ms
+2026-04-04 09:33:19.984 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/api/Authors - 200 null application/json; charset=utf-8 100.8427ms
+2026-04-04 09:33:25.166 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/api/Authors - null null
+2026-04-04 09:33:25.172 +05:30 [INF] Executing endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:33:25.173 +05:30 [INF] Route matched with {action = "GetAuthors", controller = "Authors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[DBFirstSerilog.Models.Author]]] GetAuthors() on controller DBFirstSerilog.Controllers.AuthorsController (DBFirstSerilog).
+2026-04-04 09:33:25.175 +05:30 [INF] Fetching authors from the database.
+2026-04-04 09:33:25.185 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ID], [a].[Name], [b].[ID], [b].[AuthorID], [b].[Name]
+FROM [Authors] AS [a]
+LEFT JOIN [Books] AS [b] ON [a].[ID] = [b].[AuthorID]
+ORDER BY [a].[ID]
+2026-04-04 09:33:25.198 +05:30 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DBFirstSerilog.Models.Author, DBFirstSerilog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-04 09:33:25.204 +05:30 [INF] Executed action DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog) in 28.9212ms
+2026-04-04 09:33:25.209 +05:30 [INF] Executed endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:33:25.213 +05:30 [INF] HTTP GET /api/Authors responded 200 in 41.8186 ms
+2026-04-04 09:33:25.222 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/api/Authors - 200 null application/json; charset=utf-8 56.3996ms
+2026-04-04 09:34:03.508 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/index.html - null null
+2026-04-04 09:34:03.575 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/index.html - 200 null text/html;charset=utf-8 67.3024ms
+2026-04-04 09:34:03.602 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-04 09:34:03.602 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_vs/browserLink - null null
+2026-04-04 09:34:03.610 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - 200 14933 application/javascript; charset=utf-8 8.8944ms
+2026-04-04 09:34:03.642 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.4304ms
+2026-04-04 09:34:03.822 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - null null
+2026-04-04 09:34:03.832 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/favicon-32x32.png - null null
+2026-04-04 09:34:03.837 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 16.1473ms
+2026-04-04 09:34:03.849 +05:30 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2026-04-04 09:34:03.852 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/favicon-32x32.png - 200 628 image/png 20.807ms
+2026-04-04 09:34:13.787 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/api/Authors - null null
+2026-04-04 09:34:13.793 +05:30 [INF] Executing endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:34:13.796 +05:30 [INF] Route matched with {action = "GetAuthors", controller = "Authors"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[DBFirstSerilog.Models.Author]]] GetAuthors() on controller DBFirstSerilog.Controllers.AuthorsController (DBFirstSerilog).
+2026-04-04 09:34:13.800 +05:30 [INF] Fetching authors from the database.
+2026-04-04 09:34:13.843 +05:30 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ID], [a].[Name], [b].[ID], [b].[AuthorID], [b].[Name]
+FROM [Authors] AS [a]
+LEFT JOIN [Books] AS [b] ON [a].[ID] = [b].[AuthorID]
+ORDER BY [a].[ID]
+2026-04-04 09:34:13.849 +05:30 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[DBFirstSerilog.Models.Author, DBFirstSerilog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2026-04-04 09:34:13.852 +05:30 [INF] Executed action DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog) in 52.728ms
+2026-04-04 09:34:13.856 +05:30 [INF] Executed endpoint 'DBFirstSerilog.Controllers.AuthorsController.GetAuthors (DBFirstSerilog)'
+2026-04-04 09:34:13.858 +05:30 [INF] HTTP GET /api/Authors responded 200 in 65.7991 ms
+2026-04-04 09:34:13.861 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/api/Authors - 200 null application/json; charset=utf-8 74.8443ms
+2026-04-04 09:45:40.220 +05:30 [INF] Now listening on: https://localhost:7197
+2026-04-04 09:45:40.473 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2026-04-04 09:45:40.480 +05:30 [INF] Hosting environment: Development
+2026-04-04 09:45:40.487 +05:30 [INF] Content root path: D:\Capg\Solutions\week2\ConsoleApp13.1\DBFirstSerilog
+2026-04-04 09:45:40.965 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/index.html - null null
+2026-04-04 09:45:41.878 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_vs/browserLink - null null
+2026-04-04 09:45:41.878 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-04 09:45:41.884 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/index.html - 200 null text/html;charset=utf-8 955.2044ms
+2026-04-04 09:45:41.965 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - 200 14933 application/javascript; charset=utf-8 88.7564ms
+2026-04-04 09:45:42.065 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_vs/browserLink - 200 null text/javascript; charset=UTF-8 189.3251ms
+2026-04-04 09:45:42.122 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - null null
+2026-04-04 09:45:42.188 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 66.9696ms
+2026-04-04 09:47:53.523 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/index.html - null null
+2026-04-04 09:47:53.641 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/index.html - 200 null text/html;charset=utf-8 129.7045ms
+2026-04-04 09:47:53.658 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - null null
+2026-04-04 09:47:53.663 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/_vs/browserLink - null null
+2026-04-04 09:47:53.686 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_framework/aspnetcore-browser-refresh.js - 200 14933 application/javascript; charset=utf-8 28.2239ms
+2026-04-04 09:47:53.770 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/_vs/browserLink - 200 null text/javascript; charset=UTF-8 107.2026ms
+2026-04-04 09:47:53.824 +05:30 [INF] Request starting HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - null null
+2026-04-04 09:47:53.865 +05:30 [INF] Request finished HTTP/2 GET https://localhost:7197/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 42.6865ms
