@@ -1,0 +1,81 @@
+﻿@using NorthwindCatalog.Services.DTOs
+@model List<ProductDTO>
+
+<style>
+    .products-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .products-header h2 {
+        margin: 0;
+        font-weight: 700;
+    }
+    .product-card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        height: 100%;
+    }
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, #f8f9ff 0%, #f0f0f5 100%);
+    }
+    .product-card .card-body {
+        padding: 30px 20px;
+    }
+    .product-card h5 {
+        font-weight: 700;
+        color: #333;
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+    }
+    .product-card p {
+        margin-bottom: 12px;
+        color: #555;
+        font-size: 0.95rem;
+    }
+    .product-card strong {
+        color: #667eea;
+    }
+    .back-button {
+        margin-top: 30px;
+        font-weight: 600;
+        border-radius: 8px;
+        padding: 10px 20px;
+        transition: all 0.2s ease;
+    }
+    .back-button:hover {
+        transform: translateX(-5px);
+    }
+</style>
+
+<div class="products-header">
+    <h2>Products</h2>
+</div>
+
+<div class="row g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-3">
+            <div class="card product-card">
+                <div class="card-body text-center d-flex flex-column justify-content-center align-items-center">
+                    <h5>@item.ProductName</h5>
+                    <p><strong>Price:</strong> ₹@item.UnitPrice.ToString("F2")</p>
+                    <p><strong>Stock:</strong> @item.UnitsInStock</p>
+                    <p><strong>Inventory Value:</strong> ₹@item.InventoryValue.ToString("F2")</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<a href="/Categories" class="btn btn-secondary back-button">← Back to Categories</a>

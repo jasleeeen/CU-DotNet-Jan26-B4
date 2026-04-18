@@ -1,0 +1,79 @@
+﻿@using NorthwindCatalog.Services.DTOs
+@model List<CategorySummaryDTO>
+
+<style>
+    .summary-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+    }
+    .summary-header h2 {
+        margin: 0;
+        font-weight: 700;
+    }
+    .summary-table {
+        border-collapse: collapse;
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    .summary-table thead {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    .summary-table th {
+        padding: 18px 15px;
+        font-weight: 700;
+        text-align: left;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+    }
+    .summary-table tbody tr {
+        border-bottom: 1px solid #f0f0f0;
+        transition: all 0.2s ease;
+    }
+    .summary-table tbody tr:hover {
+        background-color: #f8f9ff;
+        box-shadow: inset 0 0 10px rgba(102, 126, 234, 0.1);
+    }
+    .summary-table td {
+        padding: 16px 15px;
+        color: #333;
+        font-size: 0.95rem;
+    }
+    .summary-table tbody tr:last-child {
+        border-bottom: none;
+    }
+</style>
+
+<div class="summary-header">
+    <h2>Category Summary</h2>
+</div>
+
+<div class="table-responsive">
+    <table class="table summary-table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Product Count</th>
+                <th>Average Price</th>
+                <th>Most Expensive Product</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CategoryName</td>
+                    <td>@item.ProductCount</td>
+                    <td><strong style="color: #667eea;">₹@item.AvgPrice.ToString("F2")</strong></td>
+                    <td>@item.MostExpensiveProduct</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
