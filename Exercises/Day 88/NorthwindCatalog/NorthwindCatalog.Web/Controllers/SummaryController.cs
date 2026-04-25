@@ -1,0 +1,20 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using NorthwindCatalog.Services.DTOs;
+
+namespace NorthwindCatalog.Web.Controllers
+{
+    public class SummaryController : Controller
+    {
+        private readonly HttpClient _client;
+        public SummaryController(IHttpClientFactory factory)
+        {
+            _client = factory.CreateClient("api");
+        }
+        public async Task<IActionResult> Index()
+        {
+            var summary = await _client.GetFromJsonAsync<List<CategorySummaryDTO>>
+                ("api/products/summary");
+            return View(summary);
+        }
+    }
+}

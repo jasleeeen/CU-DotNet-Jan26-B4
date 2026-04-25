@@ -1,0 +1,79 @@
+﻿@using NorthwindCatalog.Services.DTOs
+@model List<CategoryDTO>
+
+<style>
+    .categories-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 30px;
+        border-radius: 10px;
+        margin-bottom: 40px;
+    }
+    .categories-header h2 {
+        margin: 0;
+        font-weight: 700;
+    }
+    .category-card {
+        height: 100%;
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    .category-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    .category-card img {
+        height: 220px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .category-card:hover img {
+        transform: scale(1.1);
+    }
+    .category-card .card-body {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .category-card h5 {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 15px;
+    }
+    .category-card .btn {
+        font-weight: 600;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+    .category-card .btn:hover {
+        transform: translateY(-2px);
+    }
+</style>
+
+<div class="categories-header">
+    <h2>Categories</h2>
+</div>
+
+<div class="row g-4">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 mb-3">
+            <div class="card category-card h-100">
+                <img src="@item.ImageUrl" class="card-img-top" alt="@item.CategoryName" />
+
+                <div class="card-body text-center">
+                    <h5>@item.CategoryName</h5>
+
+                    <a href="/Products/ByCategory/@item.CategoryId"
+                           class="btn btn-primary mt-auto">
+                        View Products →
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

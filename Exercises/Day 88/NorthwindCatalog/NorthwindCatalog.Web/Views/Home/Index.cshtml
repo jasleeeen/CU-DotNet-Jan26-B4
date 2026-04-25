@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 60px 20px;
+        border-radius: 10px;
+        margin-bottom: 50px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    }
+    .hero-section h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+    .hero-section p {
+        font-size: 1.3rem;
+        opacity: 0.95;
+    }
+    .feature-card {
+        transition: all 0.3s ease;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+    .feature-card h3 {
+        color: #333;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    .feature-card p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+    .feature-card .btn {
+        font-weight: 600;
+        padding: 10px 25px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+    }
+    .feature-card .btn:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="hero-section text-center">
+    <h1 class="fw-bold">Northwind Catalog</h1>
+    <p class="lead mb-0">Explore categories, products, and inventory insights</p>
+</div>
+
+<div class="row justify-content-center g-4">
+    <div class="col-md-5">
+        <div class="card feature-card shadow-lg p-5">
+            <div class="text-center mb-3">
+                <i class="bi bi-shop" style="font-size: 2.5rem; color: #28a745;"></i>
+            </div>
+            <h3>Browse Products</h3>
+            <p>Explore our extensive catalog of products organized by category</p>
+            <a href="/Categories" class="btn btn-success btn-lg w-100">Browse Products</a>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card feature-card shadow-lg p-5">
+            <div class="text-center mb-3">
+                <i class="bi bi-graph-up" style="font-size: 2.5rem; color: #212529;"></i>
+            </div>
+            <h3>View Analytics</h3>
+            <p>Get insights into inventory values, pricing, and product statistics</p>
+            <a href="/Summary" class="btn btn-dark btn-lg w-100">View Summary</a>
+        </div>
+    </div>
+</div>
