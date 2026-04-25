@@ -1,0 +1,46 @@
+@page
+@{
+    ViewData["Title"] = "Create Order";
+}
+
+<h1>Create Order</h1>
+
+<form id="orderForm">
+    <div>
+        <label for="userId">User Id</label>
+        <input type="number" id="userId" name="userId" />
+    </div>
+    <div>
+        <label for="productIds">Product Ids</label>
+        <input type="text" id="productIds" name="productIds" />
+    </div>
+    <div>
+        <label for="totalAmount">Total Amount</label>
+        <input type="number" id="totalAmount" name="totalAmount" step="0.01"  />
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<pre id="result"></pre>
+
+<script>
+    document.getElementById("orderForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const userId = parseInt(document.getElementById("userId").value, 10);
+        const productIds = document.getElementById("productIds").value
+            .split(",")
+            .map(x => parseInt(x.trim(), 10))
+            .filter(x => !Number.isNaN(x));
+        const totalAmount = parseFloat(document.getElementById("totalAmount").value);
+
+        const payload = { userId, productIds, totalAmount };
+        const response = await fetch("/api/order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        document.getElementById("result").textContent = JSON.stringify(data, null, 2);
+    });
+</script>
